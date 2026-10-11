@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free PNGTuber Player for OBS: Talks When You Talk</title>
+  <meta name="description" content="Turn four PNG frames into one file you add to OBS. The mouth follows your voice, the eyes blink on their own, and the background stays transparent. Free, open source, nothing uploaded.">
+  <link rel="canonical" href="https://pngtubermaker.github.io/pngtuber-obs-player/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free PNGTuber Player for OBS">
+  <meta property="og:description" content="Four PNG frames in, one OBS Browser Source file out. Mouth follows your voice, eyes blink, transparent background.">
+  <meta property="og:url" content="https://pngtubermaker.github.io/pngtuber-obs-player/">
+  <meta property="og:image" content="https://pngtubermaker.github.io/pngtuber-obs-player/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="samples/fox-streamer-idle.webp">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <span class="brand">PNGTuber OBS Player</span>
+    <a href="https://github.com/pngtubermaker/pngtuber-obs-player">Source on GitHub</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Make your PNGTuber talk in OBS</h1>
+      <p class="lede">Drop in the four frames of your character and download one file. Add it to OBS as a Browser Source: the mouth follows your voice, the eyes blink on their own, and the background stays transparent.</p>
+      <ul class="points">
+        <li>No app to install and no account</li>
+        <li>Nothing is uploaded: your images stay on your computer</li>
+        <li>Listens to your mic through OBS, so your noise gate and mute still work</li>
+      </ul>
+    </section>
+
+    <section class="tool" aria-label="Player setup">
+      <div class="steps">
+        <div class="step">
+          <h2><span class="num">1</span> Add your four frames</h2>
+          <p class="hint">Same drawing, same size: only the mouth and eyes change. File names like <code>idle.png</code> or <code>talking.png</code> are sorted into place for you.</p>
+          <label class="drop" id="drop">
+            <input type="file" id="files" accept="image/png,image/webp,image/jpeg" multiple>
+            <span><strong>Drop images here</strong> or click to choose</span>
+          </label>
+          <div class="slots" id="slots"></div>
+          <p class="warn" id="size-warning" hidden></p>
+          <p class="hint">No frames yet? Try a free character:</p>
+          <div class="samples" id="samples"></div>
+        </div>
+
+        <div class="step">
+          <h2><span class="num">2</span> Connect to OBS <span class="optional">(only if OBS asks for a password)</span></h2>
+          <p class="hint">The player listens to your microphone through OBS. In OBS, open <b>Tools → WebSocket Server Settings</b> and tick <b>Enable WebSocket server</b>. If <b>Enable Authentication</b> is ticked, click <b>Show Connect Info</b> and copy the password here.</p>
+          <div class="fields">
+            <label>Server password <input type="password" id="obs-password" autocomplete="off" placeholder="Leave empty if authentication is off"></label>
+            <label>Server port <input type="number" id="obs-port" value="4455" min="1" max="65535"></label>
+            <label>Microphone source in OBS <input type="text" id="obs-input" placeholder="Empty: Mic/Aux or your first mic"></label>
+          </div>
+          <button type="button" class="secondary" id="test-obs">Test with OBS</button>
+          <p class="status" id="obs-status" aria-live="polite"></p>
+        </div>
+
+        <div class="step">
+          <h2><span class="num">3</span> Download your OBS file</h2>
+          <label class="name">Character name <input type="text" id="name" maxlength="40" placeholder="my-pngtuber"></label>
+          <button type="button" class="primary" id="download" disabled>Download for OBS</button>
+          <p class="hint" id="download-note">Add your frames first.</p>
+          <p class="hint" id="password-note" hidden>Your OBS password is saved inside this file. Keep the file to yourself.</p>
+        </div>
+      </div>
+
+      <div class="preview">
+        <div class="stage-wrap">
+          <div id="preview-stage"></div>
+          <p class="empty" id="preview-empty">Your character shows up here</p>
+        </div>
+        <div class="meter" aria-hidden="true"><span id="meter-bar"></span></div>
+        <button type="button" class="secondary" id="test-mic">Test with my microphone</button>
+        <p class="status" id="mic-status" aria-live="polite"></p>
+        <label class="slider">Mouth sensitivity <output id="sens-out">1.0×</output>
+          <input type="range" id="sensitivity" min="0.25" max="3" step="0.05" value="1">
+        </label>
+        <label class="slider">Keep the mouth open between words <output id="hold-out">100 ms</output>
+          <input type="range" id="hold" min="0" max="500" step="10" value="100">
+        </label>
+      </div>
+    </section>
+
+    <section class="guide">
+      <h2>Add it to OBS</h2>
+      <ol>
+        <li>In OBS, click <b>+</b> under <b>Sources</b> and choose <b>Browser</b>.</li>
+        <li>Tick <b>Local file</b> and choose the file you downloaded.</li>
+        <li>Set <b>Width</b> and <b>Height</b> to your frame size (shown under step 3), then click <b>OK</b>.</li>
+        <li>Talk. If the mouth doesn't move, a short note on the source tells you what OBS needs, and it disappears once the mouth has moved.</li>
+      </ol>
+      <p>Want an angry or happy face too? Make a second file from those frames and switch between the two sources with OBS's show and hide hotkeys.</p>
+    </section>
+
+    <section class="cta">
+      <h2>Don't have a character yet?</h2>
+      <p>Describe a character or upload a reference image, and <a href="https://pngtubermaker.net/">PNGTuber Maker</a>, an AI PNGTuber generator, draws all four frames this player needs. Your first four designs are free.</p>
+    </section>
+
+    <section class="faq">
+      <h2>Questions</h2>
+      <details>
+        <summary>Are my images uploaded anywhere?</summary>
+        <p>No. This page builds the file in your browser, and the file holds your images inside it. Nothing is sent to a server.</p>
+      </details>
+      <details>
+        <summary>Why does it listen through OBS instead of the browser microphone?</summary>
+        <p>OBS's browser source blocks the microphone unless OBS is started with a special launch option. OBS can always share its own audio meter over its built-in WebSocket server, and that meter already includes your filters, volume and mute. If OBS can't be reached, the player tries the browser microphone as a fallback.</p>
+      </details>
+      <details>
+        <summary>Does it work in Streamlabs Desktop?</summary>
+        <p>Your character shows up, but it won't talk: Streamlabs Desktop has no OBS WebSocket server for the player to listen to.</p>
+      </details>
+      <details>
+        <summary>What size should my frames be?</summary>
+        <p>All four the same size, with a transparent background. 1024 × 1024 works well. Bigger images are scaled down to 1024 pixels on the long side to keep the file small.</p>
+      </details>
+      <details>
+        <summary>Which OBS versions work?</summary>
+        <p>OBS Studio 28 or newer, which has the WebSocket server built in.</p>
+      </details>
+      <details>
+        <summary>Can I use the free characters on stream?</summary>
+        <p>Yes, including on monetized Twitch and YouTube channels, with no credit required. They come from the <a href="https://pngtubermaker.itch.io/free-ai-pngtuber-pack">Free AI PNGTuber Pack</a> and were generated by AI with PNGTuber Maker.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Free and open source under the MIT License. <a href="https://github.com/pngtubermaker/pngtuber-obs-player">View the source</a>. Made by <a href="https://pngtubermaker.net/">PNGTuber Maker</a>.</p>
+  </footer>
+
+  <script src="player.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
