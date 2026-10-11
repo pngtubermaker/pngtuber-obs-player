@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "fox-streamer",
+    "name": "Fox Streamer",
+    "frames": {
+      "idle": "samples/fox-streamer-idle.webp",
+      "talking": "samples/fox-streamer-talking.webp",
+      "blink": "samples/fox-streamer-blink.webp",
+      "blinkTalking": "samples/fox-streamer-blink-talking.webp"
+    }
+  },
+  {
+    "slug": "mint-gamer",
+    "name": "Mint Gamer",
+    "frames": {
+      "idle": "samples/mint-gamer-idle.webp",
+      "talking": "samples/mint-gamer-talking.webp",
+      "blink": "samples/mint-gamer-blink.webp",
+      "blinkTalking": "samples/mint-gamer-blink-talking.webp"
+    }
+  },
+  {
+    "slug": "soft-goth",
+    "name": "Soft Goth",
+    "frames": {
+      "idle": "samples/soft-goth-idle.webp",
+      "talking": "samples/soft-goth-talking.webp",
+      "blink": "samples/soft-goth-blink.webp",
+      "blinkTalking": "samples/soft-goth-blink-talking.webp"
+    }
+  },
+  {
+    "slug": "panda-hoodie",
+    "name": "Panda Hoodie",
+    "frames": {
+      "idle": "samples/panda-hoodie-idle.webp",
+      "talking": "samples/panda-hoodie-talking.webp",
+      "blink": "samples/panda-hoodie-blink.webp",
+      "blinkTalking": "samples/panda-hoodie-blink-talking.webp"
+    }
+  },
+  {
+    "slug": "wolf-girl",
+    "name": "Wolf Girl",
+    "frames": {
+      "idle": "samples/wolf-girl-idle.webp",
+      "talking": "samples/wolf-girl-talking.webp",
+      "blink": "samples/wolf-girl-blink.webp",
+      "blinkTalking": "samples/wolf-girl-blink-talking.webp"
+    }
+  },
+  {
+    "slug": "rabbit-hoodie",
+    "name": "Rabbit Hoodie",
+    "frames": {
+      "idle": "samples/rabbit-hoodie-idle.webp",
+      "talking": "samples/rabbit-hoodie-talking.webp",
+      "blink": "samples/rabbit-hoodie-blink.webp",
+      "blinkTalking": "samples/rabbit-hoodie-blink-talking.webp"
+    }
+  }
+]
